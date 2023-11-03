@@ -1,1 +1,39 @@
+console.log('task-03');
+console.log('');
 
+// Напиши класс Storage, который будет создавать объекты для управления складом товаров.
+//При вызове будет получать один аргумент - начальный массив товаров, и записывать его в свойство items.
+
+// Добавь методы класса:
+
+// getItems() - возвращает массив текущих товаров
+// addItem(item) - получает новый товар и добавляет его к текущим
+// removeItem(item) - получет товар и, если он есть, удаляет его из текущих
+
+class Storage {
+  constructor(storage) {
+    this.item = [...storage];
+  }
+  getItems() {
+    return this.item;
+  }
+  addItem(item) {
+    this.item.push(item);
+  }
+  removeItem(item) {
+    if (this.item.includes(item)) {
+      this.item.splice(this.item.indexOf(item), 1);
+    }
+  }
+}
+
+const storage = new Storage(['Нанитоиды', 'Пролонгер', 'Железные жупи', 'Антигравитатор']);
+
+const items = storage.getItems();
+console.table(items); // [ "Нанитоиды", "Пролонгер", "Железные жупи", "Антигравитатор" ]
+
+storage.addItem('Дроид');
+console.table(items); // [ "Нанитоиды", "Пролонгер", "Железные жупи", "Антигравитатор", "Дроид" ]
+
+storage.removeItem('Пролонгер');
+console.table(items); // [ "Нанитоиды", "Железные жупи", "Антигравитатор", "Дроид" ]
